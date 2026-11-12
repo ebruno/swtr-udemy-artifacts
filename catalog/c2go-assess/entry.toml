@@ -1,9 +1,18 @@
 # Catalog entry for c2go-assess.
 #
-# Written and kept current by the c2go-assess release pipeline, which also runs
-# `tools/build_catalog.py --write` and commits README.md in the same commit.
+# EVERYTHING IN THIS DIRECTORY IS WRITTEN BY THE c2go-assess RELEASE PIPELINE --
+# `title`, `about.md` and the row data are the publishing project's own words
+# about its own artifacts. This index renders them; it never authors or edits
+# them. The pipeline also runs `tools/build_catalog.py --write` and commits
+# README.md in the same commit, so the entry and the index cannot drift apart.
+#
 # Digests are resolved at push time and recorded here so that generation stays a
 # pure function of this directory (see tools/build_catalog.py).
+#
+# No links. The projects that publish here do not all have a public repository,
+# and a `source`/`docs` URL that only resolves behind a login is worse than
+# none -- so the page names the project, its licence, its maintainer and the
+# release, and nothing else. See CONTRIBUTING.md.
 #
 # Only the student image is here on purpose: the four test-matrix flavours and
 # the executor image in that repo are internal, and nothing outside the project
@@ -11,8 +20,6 @@
 
 project      = "c2go-assess"
 title        = "c2go-assess — student runtime image"
-source       = "https://gitlab01.brunoe.net/ebruno/c2go-assess"
-docs         = "https://gitlab01.brunoe.net/ebruno/c2go-assess/-/blob/main/containers/README.md"
 license      = "BSD-3-Clause"
 maintainer   = "ebruno"
 summary_file = "about.md"

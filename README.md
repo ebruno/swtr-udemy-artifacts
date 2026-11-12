@@ -1,19 +1,28 @@
-# SWTR course artifacts
+# SWTR Udemy course artifacts
 
-What this project publishes in its own container registry — and nothing else. No
-build recipes, no source: each section below is written by the project that
-publishes the artifact, and is indexed from the file that project owns.
+What this project publishes — and nothing else. No build recipes, no source: each
+section below is written by the project that publishes the artifact, and is
+indexed from the file that project owns.
 
-> **Where the images live.** The registry is `registry.brunoe.net`, on the course
-> LAN. This index is mirrored to GitHub for readability, but the pull commands
-> only work from a host that can reach that registry and has been given access —
-> **the images are not anonymously pullable**. Reading this from outside the
-> course, the links that will work for you are `source` and `docs`.
+> **Where the images are published.** To **GitHub Container Registry**, under
+> `ghcr.io/ebruno/swtr-udemy-artifacts/`. The packages are **public**, so pulls
+> work anonymously — no GitHub account and no `docker login`, on any of the three
+> clients below.
 
-Pull by tag, and pin by digest when it matters:
+Pull by tag, and pin by digest when it matters. Docker, Podman and Apple's
+`container` all take the same reference; only the command differs:
 
 ```shell
-docker pull registry.brunoe.net/ebruno/swtr-udemy-artifacts/<project>/<image>:<tag>
+# Docker
+docker pull ghcr.io/ebruno/swtr-udemy-artifacts/<project>/<image>:<tag>
+
+# Podman — same reference, nothing to log in to
+podman pull ghcr.io/ebruno/swtr-udemy-artifacts/<project>/<image>:<tag>
+
+# Apple `container` (macOS): the pull verb lives under `image`, there is no
+# top-level `container pull`.
+container image pull ghcr.io/ebruno/swtr-udemy-artifacts/<project>/<image>:<tag>
+container run --rm -it ghcr.io/ebruno/swtr-udemy-artifacts/<project>/<image>:<tag>
 ```
 
 A digest is the immutable identity of a tag **as recorded when it was published**.
@@ -30,7 +39,7 @@ per-architecture images are listed separately only for pinning — and note that
 **their `latest` tags are not the current release**: pin a version tag, or name
 the digest, when the result has to be reproducible.
 
-*BSD-3-Clause · maintained by ebruno · [source](https://gitlab01.brunoe.net/ebruno/c2go-assess) · [docs](https://gitlab01.brunoe.net/ebruno/c2go-assess/-/blob/main/containers/README.md) · published from `0.5.2`*
+*BSD-3-Clause · maintained by ebruno · published from `0.5.2`*
 
 | image | tag | digest | size |
 |---|---|---|---|
@@ -47,10 +56,7 @@ the digest, when the result has to be reproducible.
 
 ---
 
-**This file is generated.** `README.md` is the output of
-[`tools/build_catalog.py`](tools/build_catalog.py) over
-[`catalog/`](catalog/). Do not edit it by hand and do not add a section to it:
-CI fails when this file is not byte-for-byte what the catalog produces, so a hand
-edit is a red pipeline rather than a quiet divergence.
-
-To publish or change an entry, see [`CONTRIBUTING.md`](CONTRIBUTING.md).
+**This repository is a synchronized copy.** It is published from another source
+repository, and each push from there overwrites what is here — branches included.
+Any change made on GitHub, on `main` or on a branch of your own, will be
+overwritten, and a pull request based on one has nothing to merge into.

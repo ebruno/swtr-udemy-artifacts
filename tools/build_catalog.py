@@ -42,7 +42,9 @@ FOOTER = ROOT / "tools" / "readme" / "footer.md"
 README = ROOT / "README.md"
 
 KINDS = {"container", "pypi", "npm", "file"}
-REQUIRED = ("project", "title", "source", "license", "maintainer")
+REQUIRED = ("project", "title", "license", "maintainer")
+ENTRY_KEYS = set(REQUIRED) | {"summary_file", "published_from", "artifact"}
+ARTIFACT_KEYS = {"kind", "repository", "tags", "digests", "sizes", "summary"}
 MAX_SUMMARY_LINES = 30
 
 # Tag prefixes this index may never advertise. Both are classes a container
@@ -54,6 +56,11 @@ FORBIDDEN_TAG_PREFIXES = ("sha-", "r-")
 
 # A digest the index can actually be pinned to.
 DIGEST_RE = re.compile(r"sha256:[0-9a-f]{64}")
+
+# This index carries **no links**. A publishing project may have no public
+# repository, and a URL that only resolves behind a login is worse than no URL at
+# all -- so the page names the project, its licence, its maintainer and the
+# release. Anything richer belongs in that project's own documentation.
 
 
 class Invalid(Exception):
@@ -92,6 +99,17 @@ def load_entries() -> list[dict]:
             if not isinstance(value, str) or not value.strip():
                 errors.append(f"{rel}: `{field}` is required and must be a non-empty string")
 
+        # Unknown keys are an error, not ignored: a field that renders nothing is
+        # indistinguishable from a field that was forgotten, and `source`/`docs`
+        # were removed from this schema deliberately. Say so rather than
+        # silently dropping what the author wrote.
+        for key in sorted(set(entry) - ENTRY_KEYS - {"_dir", "_path", "_summary"}):
+            errors.append(
+                f"{rel}: unknown field `{key}`"
+                + (" — this index carries no links; describe the project in about.md instead"
+                   if key in ("source", "docs") else "")
+            )
+
         if entry.get("project") != entry["_dir"]:
             errors.append(
                 f"{rel}: `project = {entry.get('project')!r}` does not match its directory "
@@ -105,6 +123,8 @@ def load_entries() -> list[dict]:
 
         for idx, art in enumerate(artifacts, start=1):
             where = f"{rel}: artifact {idx}"
+            for key in sorted(set(art) - ARTIFACT_KEYS):
+                errors.append(f"{where}: unknown field `{key}`")
             kind = art.get("kind")
             if kind not in KINDS:
                 errors.append(f"{where}: `kind` must be one of {sorted(KINDS)}, got {kind!r}")
@@ -247,13 +267,9 @@ def render(entries: list[dict]) -> str:
         out.extend(entry["_summary"].splitlines())
         out.append("")
 
-        meta = [
-            entry["license"],
-            f"maintained by {entry['maintainer']}",
-            f"[source]({entry['source']})",
-        ]
-        if entry.get("docs"):
-            meta.append(f"[docs]({entry['docs']})")
+        # Facts only: licence, maintainer, the release. No links -- see the note
+        # beside REQUIRED for why.
+        meta = [entry["license"], f"maintained by {entry['maintainer']}"]
         if entry.get("published_from"):
             meta.append(f"published from `{entry['published_from']}`")
         out.append("*" + " · ".join(meta) + "*\n")
