@@ -1,0 +1,42 @@
+# Catalog entry for c2go-assess.
+#
+# Written and kept current by the c2go-assess release pipeline, which also runs
+# `tools/build_catalog.py --write` and commits README.md in the same commit.
+# Digests are resolved at push time and recorded here so that generation stays a
+# pure function of this directory (see tools/build_catalog.py).
+#
+# Only the student image is here on purpose: the four test-matrix flavours and
+# the executor image in that repo are internal, and nothing outside the project
+# has a reason to pull them.
+
+project      = "c2go-assess"
+title        = "c2go-assess — student runtime image"
+source       = "https://gitlab01.brunoe.net/ebruno/c2go-assess"
+docs         = "https://gitlab01.brunoe.net/ebruno/c2go-assess/-/blob/main/containers/README.md"
+license      = "BSD-3-Clause"
+maintainer   = "ebruno"
+summary_file = "about.md"
+published_from = "0.5.2"
+
+[[artifact]]
+kind       = "container"
+repository = "c2go-assess/student"
+tags       = ["latest", "0.5.2"]
+digests    = { latest = "sha256:554f1e60c5b3bb0306d9a06dbebd7cbe99594c159bd8cfec9094f6ff7243a9a3", "0.5.2" = "sha256:554f1e60c5b3bb0306d9a06dbebd7cbe99594c159bd8cfec9094f6ff7243a9a3" }
+summary    = "multi-arch index — pull this one and you get the architecture your host needs (no size: a manifest index carries no layers of its own)"
+
+[[artifact]]
+kind       = "container"
+repository = "c2go-assess/student-amd64"
+tags       = ["0.5.2", "latest"]
+digests    = { "0.5.2" = "sha256:d9ef28fb1488f410d1842bc8ceb447a765f54d5049f8bf19e3c962f484d1e3dc", latest = "sha256:10614c4ccbfc76af5b446066eb7926b54beeb8c02b0cca1184d688d0f5ee7660" }
+sizes      = { "0.5.2" = 214843234, latest = 214843249 }
+summary    = "`latest` here is **not** the 0.5.2 release — it is the 0.5.0 content and has not moved since 2026-11-06. Pin `0.5.2`, or pull the multi-arch index above"
+
+[[artifact]]
+kind       = "container"
+repository = "c2go-assess/student-arm64"
+tags       = ["0.5.2", "latest"]
+digests    = { "0.5.2" = "sha256:0fc860eafbb7db90927013f934aee1b475175930a3a9a7740fdf2c151d5d7709", latest = "sha256:929fb05b75ef4310399530a01106164d1a3249925900b319b4d206e9a22992fb" }
+sizes      = { "0.5.2" = 210211516, latest = 210211580 }
+summary    = "same caveat as amd64: `latest` is the 0.5.0 content, not 0.5.2"
