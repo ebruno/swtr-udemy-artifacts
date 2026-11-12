@@ -89,10 +89,27 @@ to fail for reasons other than a commit.
   images and probe repositories stay out unless they have a reason to be pulled
   by someone outside the project.
 
-## Open decision
+## Where the images are addressed
 
-The registry is on the course LAN and is not anonymously pullable, so the pull
-commands in the generated README are for course members. If the GitHub mirror is
-meant to be useful to anyone else, that needs a decision: mirror the published
-images to a public registry (ghcr / Docker Hub) and index *those*, or keep this as
-a members-only index and make the limitation explicit — which the header now does.
+**The public reference is GitHub Container Registry**:
+`ghcr.io/ebruno/swtr-udemy-artifacts/<project>/<image>:<tag>` — the same account
+that hosts this repository on GitHub. Every pull command in the generated README
+points there, and the internal registry host is **not named on the page at all**,
+for the same reason a gitlab01 link is refused: a reader arriving from GitHub
+cannot reach it.
+
+The host lives in exactly one place, [`tools/readme/header.md`](tools/readme/header.md).
+An entry's `repository` stays registry-relative (`c2go-assess/student`), so
+changing the public host is a one-line edit and never a sweep through `catalog/`.
+
+**State at 2026-11-12:** nothing is published to `ghcr.io/ebruno/` yet — the
+account has no container packages, and Docker Hub has no repositories either. The
+pulls above therefore resolve only once the publish/mirror step exists. That is a
+known gap between what the page states and what a reader can do, recorded here
+rather than discovered by a student.
+
+A companion check belongs with it, and is not built: resolve each listed
+`repository:tag` at the public host and fail when one is missing — the registry half
+of what `--check` does for the file. It cannot live in the commit-triggered job,
+for the reason in `tools/build_catalog.py`: a check whose answer changes without a
+commit gets switched off.
