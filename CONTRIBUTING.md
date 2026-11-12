@@ -77,6 +77,17 @@ file for no reason or produce a diff nobody asked for. Registry drift — a tag
 retention collected — is a separate check, and belongs in a job that is allowed
 to fail for reasons other than a commit.
 
+## Licence
+
+The **index itself** — this repository's text and tooling — is **BSD-3-Clause**; the
+terms are in [`LICENSE`](LICENSE).
+
+That is not the same thing as an artifact's licence. Each entry declares its own in
+`entry.toml` (`license = "…"`), and that value is what the page shows beside the
+project. Two entries may publish under different terms, and a project may publish
+under terms this repository does not use — so read the section, not the repository,
+when the question is about what you are pulling.
+
 ## What does not belong here
 
 - **No links at all.** The generator renders none, and unknown fields are rejected,
