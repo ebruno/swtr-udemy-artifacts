@@ -102,18 +102,27 @@ The host lives in exactly one place, [`tools/readme/header.md`](tools/readme/hea
 An entry's `repository` stays registry-relative (`c2go-assess/student`), so
 changing the public host is a one-line edit and never a sweep through `catalog/`.
 
+**The SWTR packages are public** (owner, 2026-11-12), and that is a decision rather
+than a default. GitHub creates every package **private** on first publish, so a new
+`swtr-udemy-artifacts/…` package has to be flipped to public after its first push —
+and the docs are explicit that **public is a one-way door: it cannot be made private
+again**. Only for the Container registry do public packages allow anonymous pulls,
+which is the whole point here: a student should not need a GitHub account to run
+the assessment.
+
+Note the contrast with what the account already publishes: `softwaretrace-ostools/archlinux`
+is **private**. Two namespaces, two access models, deliberately — so "the ghcr
+packages are private" is not a safe assumption to carry over.
+
 **State at 2026-11-12**, read with the GitHub admin token from 1Password
 (`Infrastructure`, item `v3yx3gtsvennk5pizrmrvzwnxq`):
 
-- The account **does** publish to ghcr already — one package,
-  `softwaretrace-ostools/archlinux`, **private**. So the `<project>/<image>` shape
-  the page uses is not invented: it matches the naming already in use, and the
-  access note is accurate — private packages need access and a login.
+- That package's **nested name** matches the `<project>/<image>` path shape this
+  page uses.
 - **`ebruno/swtr-udemy-artifacts` and `ebruno/c2go-assess` do not exist on GitHub
-  yet**, which is why the page's `source` and `docs` links 404. The mirror has to
-  exist before those links are true, and before any of these pulls resolve — no
-  SWTR package is published to ghcr.
-- That token expires **2027-10-20** and carries `repo` and `write:packages`, so it
+  yet**, which is why the page's `source` and `docs` links 404, and no SWTR package
+  exists on ghcr — so neither the links nor the pulls resolve today.
+- The token expires **2027-10-20** and carries `repo` and `write:packages`, so it
   can create the mirrors and push to ghcr. It is a person's admin token, not a
   narrow machine credential: if CI ever needs it, mint something scoped to the
   package instead of handing a pipeline this.
