@@ -39,7 +39,7 @@ per-architecture images are listed separately only for pinning — and note that
 **their `latest` tags are not the current release**: pin a version tag, or name
 the digest, when the result has to be reproducible.
 
-*BSD-3-Clause · maintained by ebruno · [source](https://github.com/ebruno/c2go-assess) · [docs](https://github.com/ebruno/c2go-assess/blob/main/containers/README.md) · published from `0.5.2`*
+*BSD-3-Clause · maintained by ebruno · published from `0.5.2`*
 
 | image | tag | digest | size |
 |---|---|---|---|

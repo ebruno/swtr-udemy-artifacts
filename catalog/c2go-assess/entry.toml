@@ -9,9 +9,10 @@
 # Digests are resolved at push time and recorded here so that generation stays a
 # pure function of this directory (see tools/build_catalog.py).
 #
-# Links are the **GitHub** URLs: this page is read on GitHub, so a link to an
-# internal or private host would be unreachable for most readers. A project needs a
-# public repository before it can be listed -- see CONTRIBUTING.md.
+# No links. The projects that publish here do not all have a public repository,
+# and a `source`/`docs` URL that only resolves behind a login is worse than
+# none -- so the page names the project, its licence, its maintainer and the
+# release, and nothing else. See CONTRIBUTING.md.
 #
 # Only the student image is here on purpose: the four test-matrix flavours and
 # the executor image in that repo are internal, and nothing outside the project
@@ -19,8 +20,6 @@
 
 project      = "c2go-assess"
 title        = "c2go-assess — student runtime image"
-source       = "https://github.com/ebruno/c2go-assess"
-docs         = "https://github.com/ebruno/c2go-assess/blob/main/containers/README.md"
 license      = "BSD-3-Clause"
 maintainer   = "ebruno"
 summary_file = "about.md"

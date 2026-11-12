@@ -15,10 +15,13 @@ the project that publishes the artifact, and the index renders it verbatim. This
 repository never authors or edits another project's description; if the wording
 is wrong, the fix belongs in that project's pipeline, not here.
 
-**Links must be public.** `source` and `docs` have to be `https://github.com/…`.
-This page is read on GitHub, so a link to an internal or private host is a dead
-link for nearly every reader. A project needs a public repository *before* it can
-be listed — that is enforced, not advised.
+**The page carries no links.** Not to source, not to docs, not to the registry
+beyond the pull commands. A publishing project may have no public repository at
+all, and a URL that resolves only behind a login is worse than no URL: it looks
+like an answer and is not one. Each section states the project, its licence, its
+maintainer and the release; anything richer belongs in that project's own
+documentation. `source` and `docs` were removed from the schema for this reason,
+and adding either back is a validation error rather than a silent no-op.
 
 ```
 catalog/<project>/entry.toml     # machine: what exists, which tags, digests
@@ -76,8 +79,8 @@ to fail for reasons other than a commit.
 
 ## What does not belong here
 
-- **No internal links.** `source` and `docs` are rendered into a page read on
-  GitHub; an internal-host URL is refused at validation for that reason.
+- **No links at all.** The generator renders none, and unknown fields are rejected,
+  so a link cannot be slipped in as an extra key.
 - **No registry credentials.** This repo never pulls, pushes or queries the
   registry in CI.
 - **No scraping the registry to discover artifacts.** Enumeration tells you what
