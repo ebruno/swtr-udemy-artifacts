@@ -34,6 +34,7 @@ import re
 import sys
 import tomllib
 from pathlib import Path
+from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog"
@@ -54,6 +55,12 @@ FORBIDDEN_TAG_PREFIXES = ("sha-", "r-")
 
 # A digest the index can actually be pinned to.
 DIGEST_RE = re.compile(r"sha256:[0-9a-f]{64}")
+
+# This repository is read on its GitHub mirror, so every link in the generated
+# index has to be reachable there. An internal host renders as a dead link for
+# anyone who is not on the course LAN -- which is most of the audience -- so it is
+# refused rather than left to each author to remember.
+PUBLIC_LINK_HOSTS = ("github.com",)
 
 
 class Invalid(Exception):
@@ -91,6 +98,19 @@ def load_entries() -> list[dict]:
             value = entry.get(field)
             if not isinstance(value, str) or not value.strip():
                 errors.append(f"{rel}: `{field}` is required and must be a non-empty string")
+
+        for field in ("source", "docs"):
+            url = entry.get(field)
+            if not isinstance(url, str) or not url.strip():
+                continue  # `docs` is optional; `source` is covered by REQUIRED
+            parsed = urlparse(url)
+            if parsed.scheme != "https" or parsed.netloc.lower() not in PUBLIC_LINK_HOSTS:
+                errors.append(
+                    f"{rel}: `{field} = {url!r}` is not a public link — the index is published "
+                    f"from the GitHub mirror, so `{field}` must be https on "
+                    f"{', '.join(PUBLIC_LINK_HOSTS)}. If this project has no mirror yet, it "
+                    f"cannot be listed until it does"
+                )
 
         if entry.get("project") != entry["_dir"]:
             errors.append(

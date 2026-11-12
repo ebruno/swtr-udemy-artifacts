@@ -10,6 +10,17 @@ that as `README.md`.
 fails — that is the entire mechanism, and it only works if nothing else writes
 the README.
 
+**A publishing project owns its own words.** Everything under
+`catalog/<project>/` — the `title`, the `about.md` prose, the rows — is written by
+the project that publishes the artifact, and the index renders it verbatim. This
+repository never authors or edits another project's description; if the wording
+is wrong, the fix belongs in that project's pipeline, not here.
+
+**Links must be public.** `source` and `docs` have to be `https://github.com/…`.
+The public face of this repository is its **GitHub mirror**, so a
+`gitlab01.brunoe.net` link is a dead link for nearly every reader. A project needs
+a GitHub mirror *before* it can be listed — that is enforced, not advised.
+
 ```
 catalog/<project>/entry.toml     # machine: what exists, which tags, digests
 catalog/<project>/about.md       # prose: a few lines, plus links
@@ -67,6 +78,8 @@ to fail for reasons other than a commit.
 
 ## What does not belong here
 
+- **No internal links.** `source` and `docs` are rendered into a page read on
+  GitHub; a `gitlab01.brunoe.net` URL is refused at validation for that reason.
 - **No registry credentials.** This repo never pulls, pushes or queries the
   registry in CI.
 - **No scraping the registry to discover artifacts.** Enumeration tells you what
