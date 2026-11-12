@@ -1,8 +1,7 @@
 # Contributing an entry
 
 This project is an **index**, not a build. Nothing here produces a container; it
-records what other projects have published to `registry.brunoe.net` and renders
-that as `README.md`.
+records what other projects have published, and renders that as `README.md`.
 
 ## The rule that governs everything
 
@@ -17,9 +16,9 @@ repository never authors or edits another project's description; if the wording
 is wrong, the fix belongs in that project's pipeline, not here.
 
 **Links must be public.** `source` and `docs` have to be `https://github.com/…`.
-The public face of this repository is its **GitHub mirror**, so a
-`gitlab01.brunoe.net` link is a dead link for nearly every reader. A project needs
-a GitHub mirror *before* it can be listed — that is enforced, not advised.
+This page is read on GitHub, so a link to an internal or private host is a dead
+link for nearly every reader. A project needs a public repository *before* it can
+be listed — that is enforced, not advised.
 
 ```
 catalog/<project>/entry.toml     # machine: what exists, which tags, digests
@@ -46,10 +45,9 @@ merge request:
 5. If the content is unchanged, push nothing. A re-run of the same release must
    not create an empty commit.
 
-Access is a **deploy key with write on this repository, and nothing else**. There
-is one writer at a time (single-user instance, sequential releases), so there is
-no locking and no conflict protocol: one `pull --rebase` before the push, and a
-retry if the push is rejected.
+You need write access to this repository. Releases are sequential, so there is no
+locking and no conflict protocol: one `pull --rebase` before the push, and a retry
+if the push is rejected.
 
 ## What the generator enforces, and why
 
@@ -79,7 +77,7 @@ to fail for reasons other than a commit.
 ## What does not belong here
 
 - **No internal links.** `source` and `docs` are rendered into a page read on
-  GitHub; a `gitlab01.brunoe.net` URL is refused at validation for that reason.
+  GitHub; an internal-host URL is refused at validation for that reason.
 - **No registry credentials.** This repo never pulls, pushes or queries the
   registry in CI.
 - **No scraping the registry to discover artifacts.** Enumeration tells you what
@@ -91,45 +89,11 @@ to fail for reasons other than a commit.
 
 ## Where the images are addressed
 
-**The public reference is GitHub Container Registry**:
-`ghcr.io/ebruno/swtr-udemy-artifacts/<project>/<image>:<tag>` — the same account
-that hosts this repository on GitHub. Every pull command in the generated README
-points there, and the internal registry host is **not named on the page at all**,
-for the same reason a gitlab01 link is refused: a reader arriving from GitHub
-cannot reach it.
+Images are published to **GitHub Container Registry**, under
+`ghcr.io/ebruno/swtr-udemy-artifacts/<project>/<image>:<tag>`. The packages are
+**public**, so pulling needs no GitHub account.
 
-The host lives in exactly one place, [`tools/readme/header.md`](tools/readme/header.md).
-An entry's `repository` stays registry-relative (`c2go-assess/student`), so
-changing the public host is a one-line edit and never a sweep through `catalog/`.
-
-**The SWTR packages are public** (owner, 2026-11-12), and that is a decision rather
-than a default. GitHub creates every package **private** on first publish, so a new
-`swtr-udemy-artifacts/…` package has to be flipped to public after its first push —
-and the docs are explicit that **public is a one-way door: it cannot be made private
-again**. Only for the Container registry do public packages allow anonymous pulls,
-which is the whole point here: a student should not need a GitHub account to run
-the assessment.
-
-**`softwaretrace-ostools/archlinux` is private on purpose** (owner, 2026-11-12) — not
-an oversight and not the pattern to copy. Two namespaces, two access models: that
-package is private, `swtr-udemy-artifacts` is public. Do not "tidy" one to match
-the other, and do not carry an assumption about visibility from one to the next.
-
-**State at 2026-11-12**, read with the GitHub admin token from 1Password
-(`Infrastructure`, item `v3yx3gtsvennk5pizrmrvzwnxq`):
-
-- That package's **nested name** matches the `<project>/<image>` path shape this
-  page uses.
-- **`ebruno/swtr-udemy-artifacts` and `ebruno/c2go-assess` do not exist on GitHub
-  yet**, which is why the page's `source` and `docs` links 404, and no SWTR package
-  exists on ghcr — so neither the links nor the pulls resolve today.
-- The token expires **2027-10-20** and carries `repo` and `write:packages`, so it
-  can create the mirrors and push to ghcr. It is a person's admin token, not a
-  narrow machine credential: if CI ever needs it, mint something scoped to the
-  package instead of handing a pipeline this.
-
-A companion check belongs with it, and is not built: resolve each listed
-`repository:tag` at the public host and fail when one is missing — the registry half
-of what `--check` does for the file. It cannot live in the commit-triggered job,
-for the reason in `tools/build_catalog.py`: a check whose answer changes without a
-commit gets switched off.
+The registry host appears in exactly one place,
+[`tools/readme/header.md`](tools/readme/header.md). An entry's `repository` stays
+registry-relative (`c2go-assess/student`), so changing where artifacts are
+addressed is a one-line edit and never a sweep through `catalog/`.

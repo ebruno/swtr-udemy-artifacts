@@ -9,9 +9,9 @@
 # Digests are resolved at push time and recorded here so that generation stays a
 # pure function of this directory (see tools/build_catalog.py).
 #
-# Links are the **GitHub** URLs: the public face of this repository is its GitHub
-# mirror, and a gitlab01 link would be unreachable for most readers. A project
-# needs a public mirror before it can be listed -- see CONTRIBUTING.md.
+# Links are the **GitHub** URLs: this page is read on GitHub, so a link to an
+# internal or private host would be unreachable for most readers. A project needs a
+# public repository before it can be listed -- see CONTRIBUTING.md.
 #
 # Only the student image is here on purpose: the four test-matrix flavours and
 # the executor image in that repo are internal, and nothing outside the project
