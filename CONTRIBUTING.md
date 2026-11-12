@@ -102,11 +102,21 @@ The host lives in exactly one place, [`tools/readme/header.md`](tools/readme/hea
 An entry's `repository` stays registry-relative (`c2go-assess/student`), so
 changing the public host is a one-line edit and never a sweep through `catalog/`.
 
-**State at 2026-11-12:** nothing is published to `ghcr.io/ebruno/` yet — the
-account has no container packages, and Docker Hub has no repositories either. The
-pulls above therefore resolve only once the publish/mirror step exists. That is a
-known gap between what the page states and what a reader can do, recorded here
-rather than discovered by a student.
+**State at 2026-11-12**, read with the GitHub admin token from 1Password
+(`Infrastructure`, item `v3yx3gtsvennk5pizrmrvzwnxq`):
+
+- The account **does** publish to ghcr already — one package,
+  `softwaretrace-ostools/archlinux`, **private**. So the `<project>/<image>` shape
+  the page uses is not invented: it matches the naming already in use, and the
+  access note is accurate — private packages need access and a login.
+- **`ebruno/swtr-udemy-artifacts` and `ebruno/c2go-assess` do not exist on GitHub
+  yet**, which is why the page's `source` and `docs` links 404. The mirror has to
+  exist before those links are true, and before any of these pulls resolve — no
+  SWTR package is published to ghcr.
+- That token expires **2027-10-20** and carries `repo` and `write:packages`, so it
+  can create the mirrors and push to ghcr. It is a person's admin token, not a
+  narrow machine credential: if CI ever needs it, mint something scoped to the
+  package instead of handing a pipeline this.
 
 A companion check belongs with it, and is not built: resolve each listed
 `repository:tag` at the public host and fail when one is missing — the registry half
