@@ -110,9 +110,10 @@ again**. Only for the Container registry do public packages allow anonymous pull
 which is the whole point here: a student should not need a GitHub account to run
 the assessment.
 
-Note the contrast with what the account already publishes: `softwaretrace-ostools/archlinux`
-is **private**. Two namespaces, two access models, deliberately — so "the ghcr
-packages are private" is not a safe assumption to carry over.
+**`softwaretrace-ostools/archlinux` is private on purpose** (owner, 2026-11-12) — not
+an oversight and not the pattern to copy. Two namespaces, two access models: that
+package is private, `swtr-udemy-artifacts` is public. Do not "tidy" one to match
+the other, and do not carry an assumption about visibility from one to the next.
 
 **State at 2026-11-12**, read with the GitHub admin token from 1Password
 (`Infrastructure`, item `v3yx3gtsvennk5pizrmrvzwnxq`):
