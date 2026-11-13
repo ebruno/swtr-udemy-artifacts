@@ -1,22 +1,16 @@
 # Catalog entry for c2go-assess.
 #
-# EVERYTHING IN THIS DIRECTORY IS WRITTEN BY THE c2go-assess RELEASE PIPELINE --
-# `title`, `about.md` and the row data are the publishing project's own words
-# about its own artifacts. This index renders them; it never authors or edits
-# them. The pipeline also runs `tools/build_catalog.py --write` and commits
-# README.md in the same commit, so the entry and the index cannot drift apart.
+# WRITTEN BY `catalog-publish` IN THE c2go-assess RELEASE PIPELINE -- do not edit by
+# hand. `title`, `about.md` and the rows below are the publishing project's own
+# words about its own artifacts; the index renders them and never edits them.
 #
-# Digests are resolved at push time and recorded here so that generation stays a
-# pure function of this directory (see tools/build_catalog.py).
+# Digests are resolved at push time and recorded here so that the index generator
+# stays a pure function of its inputs (it never contacts a registry): the digest is
+# what makes a row reproducible, and a tag can move without the pages knowing.
 #
-# No links. The projects that publish here do not all have a public repository,
-# and a `source`/`docs` URL that only resolves behind a login is worse than
-# none -- so the page names the project, its licence, its maintainer and the
-# release, and nothing else. See CONTRIBUTING.md.
-#
-# Only the student image is here on purpose: the four test-matrix flavours and
-# the executor image in that repo are internal, and nothing outside the project
-# has a reason to pull them.
+# No links: the page can be read by someone with access to no repository at all. If
+# a project wants to say where it lives, it says so in about.md.
+
 
 project      = "c2go-assess"
 title        = "c2go-assess — student runtime image"
@@ -28,22 +22,17 @@ published_from = "0.5.2"
 [[artifact]]
 kind       = "container"
 repository = "c2go-assess/student"
-tags       = ["latest", "0.5.2"]
-digests    = { latest = "sha256:554f1e60c5b3bb0306d9a06dbebd7cbe99594c159bd8cfec9094f6ff7243a9a3", "0.5.2" = "sha256:554f1e60c5b3bb0306d9a06dbebd7cbe99594c159bd8cfec9094f6ff7243a9a3" }
-summary    = "multi-arch index — pull this one and you get the architecture your host needs (no size: a manifest index carries no layers of its own)"
+tags       = ["latest", "v0.5.13", "0.5.2"]
+digests    = { latest = "sha256:be46043eedbd9238971651bfa7543039b6899072b5c8518735418cf635a04c90", "v0.5.13" = "sha256:be46043eedbd9238971651bfa7543039b6899072b5c8518735418cf635a04c90", "0.5.2" = "sha256:be46043eedbd9238971651bfa7543039b6899072b5c8518735418cf635a04c90" }
 
 [[artifact]]
 kind       = "container"
 repository = "c2go-assess/student-amd64"
-tags       = ["0.5.2", "latest"]
-digests    = { "0.5.2" = "sha256:d9ef28fb1488f410d1842bc8ceb447a765f54d5049f8bf19e3c962f484d1e3dc", latest = "sha256:10614c4ccbfc76af5b446066eb7926b54beeb8c02b0cca1184d688d0f5ee7660" }
-sizes      = { "0.5.2" = 214843234, latest = 214843249 }
-summary    = "`latest` here is **not** the 0.5.2 release — it is the 0.5.0 content and has not moved since 2026-11-06. Pin `0.5.2`, or pull the multi-arch index above"
+tags       = ["0.5.2"]
+digests    = { "0.5.2" = "sha256:976fbf0bbe5f87dd682704bc60dd85cfb88e421f1fef8f1630a030f643a7dceb" }
 
 [[artifact]]
 kind       = "container"
 repository = "c2go-assess/student-arm64"
-tags       = ["0.5.2", "latest"]
-digests    = { "0.5.2" = "sha256:0fc860eafbb7db90927013f934aee1b475175930a3a9a7740fdf2c151d5d7709", latest = "sha256:929fb05b75ef4310399530a01106164d1a3249925900b319b4d206e9a22992fb" }
-sizes      = { "0.5.2" = 210211516, latest = 210211580 }
-summary    = "same caveat as amd64: `latest` is the 0.5.0 content, not 0.5.2"
+tags       = ["0.5.2"]
+digests    = { "0.5.2" = "sha256:0837389fb4b8028c7ff99cf3db3b26a78998db83e3e8dbce0993172bbe736eb0" }
