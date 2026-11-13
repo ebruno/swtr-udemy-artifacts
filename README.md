@@ -34,25 +34,19 @@ build should name.
 Runs the `c2go-assess` suite without installing Python or clang: the student image
 carries both, and it is the only image in that project with a stability promise.
 
-Pull `c2go-assess/student` and you get the right architecture for your host. The
-per-architecture images are listed separately only for pinning — and note that
-**their `latest` tags are not the current release**: pin a version tag, or name
-the digest, when the result has to be reproducible.
+Pull `c2go-assess/student` and you get the architecture your host needs. The
+per-architecture images are listed separately only for pinning — pin a version tag, or
+name the digest, when the result has to be reproducible.
 
 *BSD-3-Clause · maintained by ebruno · published from `0.5.2`*
 
 | image | tag | digest | size |
 |---|---|---|---|
-| `c2go-assess/student` | `latest` | `sha256:554f1e60c5b3…` | — |
-| `c2go-assess/student` | `0.5.2` | `sha256:554f1e60c5b3…` | — |
-| `c2go-assess/student-amd64` | `latest` | `sha256:10614c4ccbfc…` | 215 MB |
-| `c2go-assess/student-amd64` | `0.5.2` | `sha256:d9ef28fb1488…` | 215 MB |
-| `c2go-assess/student-arm64` | `latest` | `sha256:929fb05b75ef…` | 210 MB |
-| `c2go-assess/student-arm64` | `0.5.2` | `sha256:0fc860eafbb7…` | 210 MB |
-
-- `c2go-assess/student` — multi-arch index — pull this one and you get the architecture your host needs (no size: a manifest index carries no layers of its own)
-- `c2go-assess/student-amd64` — `latest` here is **not** the 0.5.2 release — it is the 0.5.0 content and has not moved since 2026-11-06. Pin `0.5.2`, or pull the multi-arch index above
-- `c2go-assess/student-arm64` — same caveat as amd64: `latest` is the 0.5.0 content, not 0.5.2
+| `c2go-assess/student` | `latest` | `sha256:be46043eedbd…` | — |
+| `c2go-assess/student` | `0.5.2` | `sha256:be46043eedbd…` | — |
+| `c2go-assess/student` | `v0.5.13` | `sha256:be46043eedbd…` | — |
+| `c2go-assess/student-amd64` | `0.5.2` | `sha256:976fbf0bbe5f…` | — |
+| `c2go-assess/student-arm64` | `0.5.2` | `sha256:0837389fb4b8…` | — |
 
 ---
 
