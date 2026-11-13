@@ -236,10 +236,15 @@ def load_entries() -> list[dict]:
 
 
 def human_size(n: object) -> str:
+    """MB to one decimal, because whole MB hides a 0.8 MB spread between builds.
+
+    Decimal units (1,000,000), not binary: the registry reports bytes, and the two
+    conventions disagree by ~5% at this scale — enough to read as a mistake.
+    """
     if not isinstance(n, int) or n <= 0:
         return "—"
     mb = n / 1_000_000
-    return f"{mb:,.0f} MB" if mb >= 1 else f"{n / 1000:,.0f} kB"
+    return f"{mb:,.1f} MB" if mb >= 1 else f"{n / 1000:,.1f} kB"
 
 
 def short_digest(digest: str) -> str:
