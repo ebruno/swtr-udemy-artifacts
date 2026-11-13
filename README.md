@@ -40,26 +40,26 @@ name the digest, when the result has to be reproducible.
 
 *BSD-3-Clause · maintained by ebruno · published from `0.5.2`*
 
-| image | tag | digest |
-|---|---|---|
-| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `latest` | `sha256:be46043eedbd…` |
-| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `0.5.2` | `sha256:be46043eedbd…` |
-| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `v0.5.13` | `sha256:be46043eedbd…` |
-| [`c2go-assess/student-amd64`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-amd64) | `0.5.2` | `sha256:976fbf0bbe5f…` |
-| [`c2go-assess/student-arm64`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-arm64) | `0.5.2` | `sha256:0837389fb4b8…` |
+| image | tag | digest | size |
+|---|---|---|---|
+| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `latest` | `sha256:c2e682ac31e8…` | — |
+| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `0.5.2` | `sha256:c2e682ac31e8…` | — |
+| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `v0.5.14` | `sha256:c2e682ac31e8…` | — |
+| [`c2go-assess/student-amd64`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-amd64) | `0.5.2` | `sha256:668b7f8a0a36…` | 214.8 MB |
+| [`c2go-assess/student-arm64`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-arm64) | `0.5.2` | `sha256:3a4bcc98296a…` | 210.2 MB |
 
 Pin by digest — the digest is what the registry accepted, so it cannot be moved:
 
 ```shell
-ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:latest@sha256:be46043eedbd9238971651bfa7543039b6899072b5c8518735418cf635a04c90
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:latest@sha256:c2e682ac31e8d634cf3b845c3900e85da0729db2bc56fc14b9bc1b5432067fb3
 
-ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:0.5.2@sha256:be46043eedbd9238971651bfa7543039b6899072b5c8518735418cf635a04c90
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:0.5.2@sha256:c2e682ac31e8d634cf3b845c3900e85da0729db2bc56fc14b9bc1b5432067fb3
 
-ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:v0.5.13@sha256:be46043eedbd9238971651bfa7543039b6899072b5c8518735418cf635a04c90
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:v0.5.14@sha256:c2e682ac31e8d634cf3b845c3900e85da0729db2bc56fc14b9bc1b5432067fb3
 
-ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-amd64:0.5.2@sha256:976fbf0bbe5f87dd682704bc60dd85cfb88e421f1fef8f1630a030f643a7dceb
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-amd64:0.5.2@sha256:668b7f8a0a364815f7b90984a154c59e1a1d6255e8524c26c00b6d3c3cba6412
 
-ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-arm64:0.5.2@sha256:0837389fb4b8028c7ff99cf3db3b26a78998db83e3e8dbce0993172bbe736eb0
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-arm64:0.5.2@sha256:3a4bcc98296a1bc160bff09cdc5499e0bf8e1a88fb16a919513f7947ec1b1eb6
 ```
 
 ---
