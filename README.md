@@ -40,13 +40,27 @@ name the digest, when the result has to be reproducible.
 
 *BSD-3-Clause · maintained by ebruno · published from `0.5.2`*
 
-| image | tag | digest | size |
-|---|---|---|---|
-| `c2go-assess/student` | `latest` | `sha256:be46043eedbd…` | — |
-| `c2go-assess/student` | `0.5.2` | `sha256:be46043eedbd…` | — |
-| `c2go-assess/student` | `v0.5.13` | `sha256:be46043eedbd…` | — |
-| `c2go-assess/student-amd64` | `0.5.2` | `sha256:976fbf0bbe5f…` | — |
-| `c2go-assess/student-arm64` | `0.5.2` | `sha256:0837389fb4b8…` | — |
+| image | tag | digest |
+|---|---|---|
+| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `latest` | `sha256:be46043eedbd…` |
+| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `0.5.2` | `sha256:be46043eedbd…` |
+| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `v0.5.13` | `sha256:be46043eedbd…` |
+| [`c2go-assess/student-amd64`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-amd64) | `0.5.2` | `sha256:976fbf0bbe5f…` |
+| [`c2go-assess/student-arm64`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-arm64) | `0.5.2` | `sha256:0837389fb4b8…` |
+
+Pin by digest — the digest is what the registry accepted, so it cannot be moved:
+
+```shell
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:latest@sha256:be46043eedbd9238971651bfa7543039b6899072b5c8518735418cf635a04c90
+
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:0.5.2@sha256:be46043eedbd9238971651bfa7543039b6899072b5c8518735418cf635a04c90
+
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:v0.5.13@sha256:be46043eedbd9238971651bfa7543039b6899072b5c8518735418cf635a04c90
+
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-amd64:0.5.2@sha256:976fbf0bbe5f87dd682704bc60dd85cfb88e421f1fef8f1630a030f643a7dceb
+
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-arm64:0.5.2@sha256:0837389fb4b8028c7ff99cf3db3b26a78998db83e3e8dbce0993172bbe736eb0
+```
 
 ---
 

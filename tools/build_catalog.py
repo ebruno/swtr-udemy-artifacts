@@ -57,6 +57,11 @@ FORBIDDEN_TAG_PREFIXES = ("sha-", "r-")
 # A digest the index can actually be pinned to.
 DIGEST_RE = re.compile(r"sha256:[0-9a-f]{64}")
 
+# Where the artifacts are published. Interpolated into the header's prose and into
+# every link the page renders, so a host change is one line here rather than a sweep
+# through the template and the table.
+REGISTRY_HOST = "ghcr.io/ebruno/swtr-udemy-artifacts"
+
 # This index carries **no links**. A publishing project may have no public
 # repository, and a URL that only resolves behind a login is worse than no URL at
 # all -- so the page names the project, its licence, its maintainer and the
@@ -231,10 +236,15 @@ def load_entries() -> list[dict]:
 
 
 def human_size(n: object) -> str:
+    """MB to one decimal, because whole MB hides a 0.8 MB spread between builds.
+
+    Decimal units (1,000,000), not binary: the registry reports bytes, and the two
+    conventions disagree by ~5% at this scale — enough to read as a mistake.
+    """
     if not isinstance(n, int) or n <= 0:
         return "—"
     mb = n / 1_000_000
-    return f"{mb:,.0f} MB" if mb >= 1 else f"{n / 1000:,.0f} kB"
+    return f"{mb:,.1f} MB" if mb >= 1 else f"{n / 1000:,.1f} kB"
 
 
 def short_digest(digest: str) -> str:
@@ -254,7 +264,8 @@ def ordered_tags(tags: list[str]) -> list[str]:
 
 
 def render(entries: list[dict]) -> str:
-    out: list[str] = [HEADER.read_text(encoding="utf-8").rstrip(), ""]
+    header = HEADER.read_text(encoding="utf-8").rstrip()
+    out: list[str] = [header.replace("{{registry_host}}", REGISTRY_HOST), ""]
 
     if len(entries) > 1:
         out.append("## Projects\n")
@@ -274,16 +285,37 @@ def render(entries: list[dict]) -> str:
             meta.append(f"published from `{entry['published_from']}`")
         out.append("*" + " · ".join(meta) + "*\n")
 
-        out.append("| image | tag | digest | size |")
-        out.append("|---|---|---|---|")
+        # The image cell is a link whose visible text is still the repository name: a
+        # link can be copied as a URL, and the name alone gives a reader nothing to open.
+        has_sizes = any(art.get("sizes") for art in entry.get("artifact", []))
+        out.append("| image | tag | digest | size |" if has_sizes else "| image | tag | digest |")
+        out.append("|---|---|---|---|" if has_sizes else "|---|---|---|")
         for art in entry.get("artifact", []):
             repo = art["repository"]
+            cell = f"[`{repo}`](https://{REGISTRY_HOST}/{repo})"
             for tag in ordered_tags(art["tags"]):
-                out.append(
-                    f"| `{repo}` | `{tag}` | `{short_digest(art['digests'][tag])}` "
-                    f"| {human_size(art.get('sizes', {}).get(tag))} |"
-                )
+                row = f"| {cell} | `{tag}` | `{short_digest(art['digests'][tag])}` "
+                if has_sizes:
+                    row += f"| {human_size(art.get('sizes', {}).get(tag))} "
+                out.append(row + "|")
         out.append("")
+
+        # Every row above, one line, with the digest written out: the table truncates
+        # it, and a truncated digest is not something anyone can pin. One line per
+        # declared tag rather than one per repository, so the counts match the table --
+        # three tags sharing a digest then *show* that they are one content.
+        if entry.get("artifact"):
+            out.append(
+                "Pin by digest — the digest is what the registry accepted, so it cannot be moved:\n"
+            )
+            out.append("```shell")
+            block = [
+                f"{REGISTRY_HOST}/{art['repository']}:{tag}@{art['digests'][tag]}"
+                for art in entry.get("artifact", [])
+                for tag in ordered_tags(art["tags"])
+            ]
+            out.append("\n\n".join(block))
+            out.append("```\n")
 
         notes = [
             (art["repository"], (art.get("summary") or "").strip())
