@@ -22,19 +22,19 @@ published_from = "0.5.2"
 [[artifact]]
 kind       = "container"
 repository = "c2go-assess/student"
-tags       = ["latest", "v0.5.15", "0.5.2"]
-digests    = { latest = "sha256:c9f9036aaa3cfdb68b39a01287da131352e892aa6b9fc14b7e9d461d1c93ea7a", "v0.5.15" = "sha256:c9f9036aaa3cfdb68b39a01287da131352e892aa6b9fc14b7e9d461d1c93ea7a", "0.5.2" = "sha256:c9f9036aaa3cfdb68b39a01287da131352e892aa6b9fc14b7e9d461d1c93ea7a" }
+tags       = ["latest", "v0.5.16", "0.5.2"]
+digests    = { latest = "sha256:ff7560f165b2c7f4e6310ecb2f46ee9d93dca0ac99466cea3c9671684c95a278", "v0.5.16" = "sha256:ff7560f165b2c7f4e6310ecb2f46ee9d93dca0ac99466cea3c9671684c95a278", "0.5.2" = "sha256:ff7560f165b2c7f4e6310ecb2f46ee9d93dca0ac99466cea3c9671684c95a278" }
 
 [[artifact]]
 kind       = "container"
 repository = "c2go-assess/student-amd64"
 tags       = ["0.5.2"]
-digests    = { "0.5.2" = "sha256:5d246b5e8e9b299b12593d38352d0c3a7c8c58af3658ec8fe22ed06d15d94add" }
-sizes      = { "0.5.2" = 214830773 }
+digests    = { "0.5.2" = "sha256:1ecc5d87b57afbf03dd8520d01f0f97132f2f2c84fd7fe11c2d06d75efee958c" }
+sizes      = { "0.5.2" = 214843466 }
 
 [[artifact]]
 kind       = "container"
 repository = "c2go-assess/student-arm64"
 tags       = ["0.5.2"]
-digests    = { "0.5.2" = "sha256:52fec58ac89eba4846206f7a4d2b6645d6a1575393f099e7ec78725042248e40" }
-sizes      = { "0.5.2" = 210211523 }
+digests    = { "0.5.2" = "sha256:9258e9308ba6531fa9a5e06f1a138d1c79b02e3c7cef0988d37f099edf475409" }
+sizes      = { "0.5.2" = 210211754 }
