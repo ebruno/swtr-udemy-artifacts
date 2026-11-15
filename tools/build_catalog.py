@@ -285,8 +285,13 @@ def render(entries: list[dict]) -> str:
             meta.append(f"published from `{entry['published_from']}`")
         out.append("*" + " · ".join(meta) + "*\n")
 
-        # The image cell is a link whose visible text is still the repository name: a
-        # link can be copied as a URL, and the name alone gives a reader nothing to open.
+        # The image cell is a link: a URL, for opening the registry. The reference a
+        # command needs is printed above the table, without a scheme.
+        joined = next((a for a in entry.get("artifact", []) if "latest" in a["tags"]), None)
+        if joined:
+            out.append("Use the URL below for `container`, `docker` or `podman` commands.\n")
+            reference = f"{REGISTRY_HOST}/{joined['repository']}:latest"
+            out.append(f"[`{reference}`]({reference})\n")
         has_sizes = any(art.get("sizes") for art in entry.get("artifact", []))
         out.append("| image | tag | digest | size |" if has_sizes else "| image | tag | digest |")
         out.append("|---|---|---|---|" if has_sizes else "|---|---|---|")
@@ -294,6 +299,9 @@ def render(entries: list[dict]) -> str:
             repo = art["repository"]
             cell = f"[`{repo}`](https://{REGISTRY_HOST}/{repo})"
             for tag in ordered_tags(art["tags"]):
+                # Plain text: since the reference moved above the table in full, a link
+                # here would be a second way to do the same job, and a second thing to keep
+                # from disagreeing with the first.
                 row = f"| {cell} | `{tag}` | `{short_digest(art['digests'][tag])}` "
                 if has_sizes:
                     row += f"| {human_size(art.get('sizes', {}).get(tag))} "

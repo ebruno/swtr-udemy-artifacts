@@ -40,6 +40,10 @@ name the digest, when the result has to be reproducible.
 
 *BSD-3-Clause · maintained by ebruno · published from `0.5.2`*
 
+Use the URL below for `container`, `docker` or `podman` commands.
+
+[`ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:latest`](ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:latest)
+
 | image | tag | digest | size |
 |---|---|---|---|
 | [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `latest` | `sha256:ff7560f165b2…` | — |
