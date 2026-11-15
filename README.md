@@ -42,7 +42,9 @@ name the digest, when the result has to be reproducible.
 
 Use the URL below for `container`, `docker` or `podman` commands.
 
-[`ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:latest`](ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:latest)
+```text
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:latest
+```
 
 | image | tag | digest | size |
 |---|---|---|---|

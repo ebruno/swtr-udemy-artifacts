@@ -291,7 +291,15 @@ def render(entries: list[dict]) -> str:
         if joined:
             out.append("Use the URL below for `container`, `docker` or `podman` commands.\n")
             reference = f"{REGISTRY_HOST}/{joined['repository']}:latest"
-            out.append(f"[`{reference}`]({reference})\n")
+            # A fenced block, not a link. A Markdown link cannot carry a scheme-less
+            # reference: GitHub resolves a relative href against the repository, so
+            # copy-link hands back https://github.com/.../blob/main/ghcr.io/... -- and an
+            # absolute href has to carry https://, which a container client rejects.
+            # A fenced block is the one affordance that copies its own text verbatim
+            # (both GitHub and GitLab put a copy button on it).
+            out.append("```text")
+            out.append(reference)
+            out.append("```\n")
         has_sizes = any(art.get("sizes") for art in entry.get("artifact", []))
         out.append("| image | tag | digest | size |" if has_sizes else "| image | tag | digest |")
         out.append("|---|---|---|---|" if has_sizes else "|---|---|---|")
