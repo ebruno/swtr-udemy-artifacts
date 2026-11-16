@@ -17,24 +17,24 @@ title        = "c2go-assess — student runtime image"
 license      = "BSD-3-Clause"
 maintainer   = "ebruno"
 summary_file = "about.md"
-published_from = "0.5.2"
+published_from = "0.5.3"
 
 [[artifact]]
 kind       = "container"
 repository = "c2go-assess/student"
-tags       = ["latest", "v0.5.16", "0.5.2"]
-digests    = { latest = "sha256:ff7560f165b2c7f4e6310ecb2f46ee9d93dca0ac99466cea3c9671684c95a278", "v0.5.16" = "sha256:ff7560f165b2c7f4e6310ecb2f46ee9d93dca0ac99466cea3c9671684c95a278", "0.5.2" = "sha256:ff7560f165b2c7f4e6310ecb2f46ee9d93dca0ac99466cea3c9671684c95a278" }
+tags       = ["latest", "v0.5.18", "0.5.3"]
+digests    = { latest = "sha256:9e10439402d159e51df444596d64af1f5ad2fcf7b0ccbea17a6c9f701955c23f", "v0.5.18" = "sha256:9e10439402d159e51df444596d64af1f5ad2fcf7b0ccbea17a6c9f701955c23f", "0.5.3" = "sha256:9e10439402d159e51df444596d64af1f5ad2fcf7b0ccbea17a6c9f701955c23f" }
 
 [[artifact]]
 kind       = "container"
 repository = "c2go-assess/student-amd64"
-tags       = ["0.5.2"]
-digests    = { "0.5.2" = "sha256:1ecc5d87b57afbf03dd8520d01f0f97132f2f2c84fd7fe11c2d06d75efee958c" }
-sizes      = { "0.5.2" = 214843466 }
+tags       = ["0.5.3"]
+digests    = { "0.5.3" = "sha256:8cc14ae91148cfa3eb7217cd0c4292ec7e8936dc9e0f7f4e7442bccc33cc276a" }
+sizes      = { "0.5.3" = 273008138 }
 
 [[artifact]]
 kind       = "container"
 repository = "c2go-assess/student-arm64"
-tags       = ["0.5.2"]
-digests    = { "0.5.2" = "sha256:9258e9308ba6531fa9a5e06f1a138d1c79b02e3c7cef0988d37f099edf475409" }
-sizes      = { "0.5.2" = 210211754 }
+tags       = ["0.5.3"]
+digests    = { "0.5.3" = "sha256:3192120b2e5e861758f1a98371017bd1e7dd5ddb019a09422f9a9b97ee50c8b8" }
+sizes      = { "0.5.3" = 272011097 }

@@ -38,7 +38,7 @@ Pull `c2go-assess/student` and you get the architecture your host needs. The
 per-architecture images are listed separately only for pinning — pin a version tag, or
 name the digest, when the result has to be reproducible.
 
-*BSD-3-Clause · maintained by ebruno · published from `0.5.2`*
+*BSD-3-Clause · maintained by ebruno · published from `0.5.3`*
 
 Use the URL below for `container`, `docker` or `podman` commands.
 
@@ -48,24 +48,24 @@ ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:latest
 
 | image | tag | digest | size |
 |---|---|---|---|
-| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `latest` | `sha256:ff7560f165b2…` | — |
-| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `0.5.2` | `sha256:ff7560f165b2…` | — |
-| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `v0.5.16` | `sha256:ff7560f165b2…` | — |
-| [`c2go-assess/student-amd64`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-amd64) | `0.5.2` | `sha256:1ecc5d87b57a…` | 214.8 MB |
-| [`c2go-assess/student-arm64`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-arm64) | `0.5.2` | `sha256:9258e9308ba6…` | 210.2 MB |
+| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `latest` | `sha256:9e10439402d1…` | — |
+| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `0.5.3` | `sha256:9e10439402d1…` | — |
+| [`c2go-assess/student`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student) | `v0.5.18` | `sha256:9e10439402d1…` | — |
+| [`c2go-assess/student-amd64`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-amd64) | `0.5.3` | `sha256:8cc14ae91148…` | 273.0 MB |
+| [`c2go-assess/student-arm64`](https://ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-arm64) | `0.5.3` | `sha256:3192120b2e5e…` | 272.0 MB |
 
 Pin by digest — the digest is what the registry accepted, so it cannot be moved:
 
 ```shell
-ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:latest@sha256:ff7560f165b2c7f4e6310ecb2f46ee9d93dca0ac99466cea3c9671684c95a278
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:latest@sha256:9e10439402d159e51df444596d64af1f5ad2fcf7b0ccbea17a6c9f701955c23f
 
-ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:0.5.2@sha256:ff7560f165b2c7f4e6310ecb2f46ee9d93dca0ac99466cea3c9671684c95a278
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:0.5.3@sha256:9e10439402d159e51df444596d64af1f5ad2fcf7b0ccbea17a6c9f701955c23f
 
-ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:v0.5.16@sha256:ff7560f165b2c7f4e6310ecb2f46ee9d93dca0ac99466cea3c9671684c95a278
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student:v0.5.18@sha256:9e10439402d159e51df444596d64af1f5ad2fcf7b0ccbea17a6c9f701955c23f
 
-ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-amd64:0.5.2@sha256:1ecc5d87b57afbf03dd8520d01f0f97132f2f2c84fd7fe11c2d06d75efee958c
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-amd64:0.5.3@sha256:8cc14ae91148cfa3eb7217cd0c4292ec7e8936dc9e0f7f4e7442bccc33cc276a
 
-ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-arm64:0.5.2@sha256:9258e9308ba6531fa9a5e06f1a138d1c79b02e3c7cef0988d37f099edf475409
+ghcr.io/ebruno/swtr-udemy-artifacts/c2go-assess/student-arm64:0.5.3@sha256:3192120b2e5e861758f1a98371017bd1e7dd5ddb019a09422f9a9b97ee50c8b8
 ```
 
 ---
